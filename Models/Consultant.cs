@@ -16,9 +16,9 @@ namespace DataGrid_test.Models
             get => _publicClients;
         }
 
-        private void GetPublicData()
+        private ObservableCollection<Client> GetPublicData()
         {
-            ObservableCollection<Client> _publicClients = new ObservableCollection<Client>();
+            ObservableCollection<Client> clients = new ObservableCollection<Client>();
             int id;
             string name;
             string lastname;
@@ -28,15 +28,15 @@ namespace DataGrid_test.Models
                 name = Clients[i].Name;
                 lastname = new string('*', Clients[i].Lastname.Count());
 
-                _publicClients.Add(new Client(id, name, lastname));
+                clients.Add(new Client(id, name, lastname));
             }
 
-            
+            return clients;            
         }
 
         public Consultant(string pathToClientsData) : base(pathToClientsData)
-        {
-            GetPublicData();
+        {            
+            _publicClients = GetPublicData();
         }
     }
 }

@@ -1,14 +1,16 @@
-﻿using System;
+﻿using DataGrid_test.ViewModels.Base;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataGrid_test.Models
 {
-    internal class Client
+    internal class Client : ViewModel
     {
-        private int _id;
+        private readonly int _id;
         private string _name;
         private string _lastname;
 
@@ -16,15 +18,17 @@ namespace DataGrid_test.Models
         {
             get => _id;
         }
+
         public string Name
         {
             get => _name;
-            set => _name = value;
+            set => Set(ref _name, value);        
         }
+
         public string Lastname
         {
             get => _lastname;
-            set => _lastname = value;
+            set => Set(ref _lastname, value);
         }
 
         public Client(int id, string name, string lastname)

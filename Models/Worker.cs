@@ -16,7 +16,7 @@ namespace DataGrid_test.Models
 
         private static ObservableCollection<Client> _clients;
 
-        protected static ObservableCollection<Client> Clients
+        public static ObservableCollection<Client> Clients
         {
             get => _clients;
             //set => _clients = value;
@@ -59,7 +59,7 @@ namespace DataGrid_test.Models
             Save();
         }
 
-        public void Save()
+        public static void Save()
         {
             string jsonString = JsonSerializer.Serialize(_clients);
             File.WriteAllText(_pathToClientsData, jsonString);
