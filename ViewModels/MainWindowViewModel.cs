@@ -36,43 +36,23 @@ namespace DataGrid_test.ViewModels
         #endregion
 
         #endregion
-
-        #region Events
-
-        #region TestEvent
-        private ICommand _saveCommand;
-
-        public ICommand SaveCommand
-        {
-            get
-            {
-                return _saveCommand ?? (_saveCommand = new RelayCommand(
-                   x =>
-                   {
-                       Clients.Add(new Client(11, "FF", "ss"));
-                   }));
-            }
-        }
-
-        #endregion
-
-        #endregion
-
+        
 
         #region Commands
 
         #region SaveCommand
 
-        //public ICommand SaveCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
+        public ICommand SaveCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
 
-        //private void OnSaveCommandExecuted(object p) //логика команды
-        //{
-        //    //_title = "БлаБлаБла";            
-        //    OnPropertyChanged("Client");
+        private void OnSaveCommandExecuted(object p) //логика команды
+        {
+            _title = "БлаБлаБла";
+            Clients.Add(new Client(11, "FF", "ss"));
+            OnPropertyChanged("Title");
 
-        //}
+        }
 
-        //private bool CanSaveCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
+        private bool CanSaveCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
 
         #endregion
 
@@ -93,7 +73,7 @@ namespace DataGrid_test.ViewModels
             _clients = (worker as Consultant).PublicClients;
 
             #region Commands
-            //SaveCommand = new LambdaCommand(OnSaveCommandExecuted, CanSaveCommandExecute);
+            SaveCommand = new LambdaCommand(OnSaveCommandExecuted, CanSaveCommandExecute);
 
             #endregion
         }

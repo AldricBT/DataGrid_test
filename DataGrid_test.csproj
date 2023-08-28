@@ -96,9 +96,6 @@
     </Compile>
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
-    <Compile Include="Infrastructure\Events\EventArgs.cs" />
-    <Compile Include="Infrastructure\Events\EventRaiser.cs" />
-    <Compile Include="Infrastructure\Events\RelayCommand.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Consultant.cs" />
     <Compile Include="Models\Worker.cs" />
