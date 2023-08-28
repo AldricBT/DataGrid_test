@@ -1,5 +1,4 @@
 ﻿using DataGrid_test.Infrastructure.Commands;
-using DataGrid_test.Infrastructure.Events;
 using DataGrid_test.Models;
 using DataGrid_test.ViewModels.Base;
 using System;
