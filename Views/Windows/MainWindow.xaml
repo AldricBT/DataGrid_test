@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataGrid_test"
-        xmlns:vm="clr-namespace:DataGrid_test.ViewModels" 
+        xmlns:vm="clr-namespace:DataGrid_test.ViewModels"                 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="{Binding Path=Title}" 
@@ -13,26 +13,26 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="CellEditEnding">
-            <i:InvokeCommandAction Command="{Binding Path=SaveCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
+  
 
 
     <DockPanel>
         <Button DockPanel.Dock="Top" Width="100" Height="30" Margin="20" Content="Save"
-                Command="{Binding Path=SaveCommand}"/>        
-        <DataGrid ItemsSource="{Binding}" DataContext="{Binding Path=Clients}" 
+                Command="{Binding Path=SaveCommand}"/>
+        <DataGrid ItemsSource="{Binding Path=Clients}"  
               AutoGenerateColumns="False" CanUserAddRows="True">
-
-            
-
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Width="30"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
                 <DataGridTextColumn Header="Lastname" Binding="{Binding Path=Lastname}" Width="100"/>
             </DataGrid.Columns>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="CellEditEnding">
+                    <i:InvokeCommandAction Command="{Binding SaveCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
         </DataGrid>
     </DockPanel>
     
