@@ -22,7 +22,7 @@ namespace DataGrid_test
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }

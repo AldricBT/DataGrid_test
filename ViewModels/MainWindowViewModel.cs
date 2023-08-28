@@ -47,6 +47,7 @@ namespace DataGrid_test.ViewModels
         {
             //_title = "БлаБлаБла";            
             OnPropertyChanged("Client");
+            
         }
 
         private bool CanSaveCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true

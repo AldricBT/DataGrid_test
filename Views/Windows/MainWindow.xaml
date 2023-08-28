@@ -12,11 +12,21 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="CellEditEnding">
+            <i:InvokeCommandAction Command="{Binding Path=SaveCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
     <DockPanel>
         <Button DockPanel.Dock="Top" Width="100" Height="30" Margin="20" Content="Save"
-                Command="{Binding Path=SaveCommand}"/>
+                Command="{Binding Path=SaveCommand}"/>        
         <DataGrid ItemsSource="{Binding}" DataContext="{Binding Path=Clients}" 
               AutoGenerateColumns="False" CanUserAddRows="True">
+
+            
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Width="30"/>
@@ -27,4 +37,5 @@
     </DockPanel>
     
     
+
 </Window>
