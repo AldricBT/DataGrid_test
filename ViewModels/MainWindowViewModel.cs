@@ -1,4 +1,5 @@
-﻿using DataGrid_test.ViewModels.Base;
+﻿using DataGrid_test.Models;
+using DataGrid_test.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace DataGrid_test.ViewModels
 
         public MainWindowViewModel()
         {
-
+            Worker worker = new Consultant("clients.json");
         }
 
     }
