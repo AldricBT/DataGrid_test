@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataGrid_test.Models
 {
-    internal class Client : ViewModel
+    internal class Client : ViewModel, ICloneable
     {
         private readonly int _id;
         private string _name;
@@ -36,6 +36,15 @@ namespace DataGrid_test.Models
             _id = id;
             _name = name;
             _lastname = lastname;
+        }
+
+        /// <summary>
+        /// Реализация интерфейса клонирования объекта
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new Client(Id, Name, Lastname);
         }
     }
 }

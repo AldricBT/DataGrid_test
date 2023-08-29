@@ -16,22 +16,29 @@
   
 
 
-    <DockPanel>
-        <Button DockPanel.Dock="Top" Width="100" Height="30" Margin="20" Content="Save"
-                Command="{Binding Path=SaveCommand}"/>
-        <DataGrid ItemsSource="{Binding Path=Clients}"  
-              AutoGenerateColumns="False" CanUserAddRows="True">
+    <DockPanel>        
+        
+        <DataGrid ItemsSource="{Binding Path=Clients}" 
+              AutoGenerateColumns="False" CanUserAddRows="True" ColumnWidth="Auto" SelectionMode="Single"
+                  SelectedIndex="{Binding Path=SelectedIndex, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Width="30"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                <DataGridTextColumn Header="Lastname" Binding="{Binding Path=Lastname}" Width="100"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" 
+                                    IsReadOnly="False"/>
+                <DataGridTextColumn Header="Lastname" Binding="{Binding Path=Lastname}" IsReadOnly="True"/>
             </DataGrid.Columns>
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="CellEditEnding">
-                    <i:InvokeCommandAction Command="{Binding SaveCommand}"/>
+                    <i:InvokeCommandAction Command="{Binding SaveChangesCommand}"/>
+                </i:EventTrigger>
+                
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding RememberIndexCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
+
+            
 
         </DataGrid>
     </DockPanel>

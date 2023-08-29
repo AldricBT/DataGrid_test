@@ -45,7 +45,7 @@ namespace DataGrid_test.Models
         /// </summary>
         /// <param name="clientId">ID изменяемого клиента</param>
         /// <param name="editedClient">На какого клиента редактируют</param>
-        public void Edit(int clientId, Client editedClient)
+        public static void Edit(int clientId, Client editedClient)
         {
             _clients[_clients.IndexOf(_clients.Where(c => c.Id == clientId).First())] = editedClient;
         }

@@ -13,7 +13,11 @@ using System.Windows.Input;
 namespace DataGrid_test.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
-    {
+    {        
+        private int _rememberIndex;
+        
+
+
         #region Fields/Properties
 
         #region Title
@@ -33,25 +37,47 @@ namespace DataGrid_test.ViewModels
             set => Set(ref _clients, value);
         }
         #endregion
+                
+
+        #region SelectedIndex
+        private int _selectedIndex = -1;
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set => Set(ref _selectedIndex, value);
+        }
+        #endregion
+
 
         #endregion
-        
+
 
         #region Commands
 
-        #region SaveCommand
+        #region SaveChangesCommand. Сохранение изменений клиента в базе. Происходит во время изменений в DataGrid
 
-        public ICommand SaveCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
+        public ICommand SaveChangesCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
 
-        private void OnSaveCommandExecuted(object p) //логика команды
+        private void OnSaveChangesCommandExecuted(object p) //логика команды
         {
-            _title = "БлаБлаБла";
-            Clients.Add(new Client(11, "FF", "ss"));
-            OnPropertyChanged("Title");
-
+            Worker.Edit(_clients[_selectedIndex].Id, _clients[_selectedIndex]);
+            Worker.Save();            
         }
 
-        private bool CanSaveCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
+        private bool CanSaveChangesCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
+
+        #endregion
+
+        #region RememberIndexCommand. Запоминание выбранного клиента
+
+        public ICommand RememberIndexCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
+
+        private void OnRememberIndexCommandExecuted(object p) //логика команды
+        {
+            _rememberIndex = _selectedIndex;
+        }
+
+        private bool CanRememberIndexCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
 
         #endregion
 
@@ -72,10 +98,17 @@ namespace DataGrid_test.ViewModels
             _clients = (worker as Consultant).PublicClients;
 
             #region Commands
-            SaveCommand = new LambdaCommand(OnSaveCommandExecuted, CanSaveCommandExecute);
+            SaveChangesCommand = new LambdaCommand(OnSaveChangesCommandExecuted, CanSaveChangesCommandExecute);
+            RememberIndexCommand = new LambdaCommand(OnRememberIndexCommandExecuted, CanRememberIndexCommandExecute);
 
             #endregion
         }
+
+        #region Methods
+
+        //private 
+
+        #endregion
 
     }
 }
