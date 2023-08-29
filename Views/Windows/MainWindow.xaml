@@ -20,7 +20,7 @@
         
         <DataGrid ItemsSource="{Binding Path=Clients}" 
               AutoGenerateColumns="False" CanUserAddRows="True" ColumnWidth="Auto" SelectionMode="Single"
-                  SelectedIndex="{Binding Path=SelectedIndex, Mode=TwoWay}">
+                   SelectedItem="{Binding Path=SelectedItem}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" 
@@ -31,11 +31,8 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="CellEditEnding">
                     <i:InvokeCommandAction Command="{Binding SaveChangesCommand}"/>
-                </i:EventTrigger>
+                </i:EventTrigger>                
                 
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding RememberIndexCommand}"/>
-                </i:EventTrigger>
             </i:Interaction.Triggers>
 
             

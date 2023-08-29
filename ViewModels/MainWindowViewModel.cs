@@ -37,14 +37,23 @@ namespace DataGrid_test.ViewModels
             set => Set(ref _clients, value);
         }
         #endregion
-                
 
-        #region SelectedIndex
-        private int _selectedIndex = -1;
-        public int SelectedIndex
+
+        //#region SelectedIndex
+        //private int _selectedIndex = -1;
+        //public int SelectedIndex
+        //{
+        //    get => _selectedIndex;
+        //    set => Set(ref _selectedIndex, value);
+        //}
+        //#endregion
+
+        #region SelectedItem
+        private Client _selectedItem;
+        public Client SelectedItem
         {
-            get => _selectedIndex;
-            set => Set(ref _selectedIndex, value);
+            get => _selectedItem;
+            set => Set(ref _selectedItem, value);
         }
         #endregion
 
@@ -54,13 +63,15 @@ namespace DataGrid_test.ViewModels
 
         #region Commands
 
+        
+
         #region SaveChangesCommand. Сохранение изменений клиента в базе. Происходит во время изменений в DataGrid
 
         public ICommand SaveChangesCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
 
         private void OnSaveChangesCommandExecuted(object p) //логика команды
         {
-            Worker.Edit(_clients[_selectedIndex].Id, _clients[_selectedIndex]);
+            Worker.Edit(_selectedItem.Id, _clients.Where(c => c.Id == _selectedItem.Id).First());
             Worker.Save();            
         }
 
@@ -68,29 +79,11 @@ namespace DataGrid_test.ViewModels
 
         #endregion
 
-        #region RememberIndexCommand. Запоминание выбранного клиента
-
-        public ICommand RememberIndexCommand { get; } //здесь живет сама команда (это по сути обычное свойство, чтобы его можно было вызвать из хамл)
-
-        private void OnRememberIndexCommandExecuted(object p) //логика команды
-        {
-            _rememberIndex = _selectedIndex;
-        }
-
-        private bool CanRememberIndexCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
+       
 
         #endregion
 
-        #endregion
-
-        //#region TitleBox
-        //private string _title_text;
-        //public string Title_text
-        //{
-        //    get => _title_text;
-        //    set => Set(ref _title_text, value);
-        //}
-        //#endregion
+        
 
         public MainWindowViewModel()
         {
@@ -99,7 +92,7 @@ namespace DataGrid_test.ViewModels
 
             #region Commands
             SaveChangesCommand = new LambdaCommand(OnSaveChangesCommandExecuted, CanSaveChangesCommandExecute);
-            RememberIndexCommand = new LambdaCommand(OnRememberIndexCommandExecuted, CanRememberIndexCommandExecute);
+                        
 
             #endregion
         }
