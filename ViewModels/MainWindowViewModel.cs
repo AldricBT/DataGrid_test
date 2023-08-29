@@ -13,21 +13,8 @@ using System.Windows.Input;
 namespace DataGrid_test.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
-    {        
-        private int _rememberIndex;
-        
-
-
+    {   
         #region Fields/Properties
-
-        #region Title
-        private string _title = "flflfl";
-        public string Title
-        {
-            get => _title;
-            set => Set(ref _title, value);
-        }
-        #endregion
 
         #region PublicData
         private ObservableCollection<Client> _clients;
@@ -38,16 +25,6 @@ namespace DataGrid_test.ViewModels
         }
         #endregion
 
-
-        //#region SelectedIndex
-        //private int _selectedIndex = -1;
-        //public int SelectedIndex
-        //{
-        //    get => _selectedIndex;
-        //    set => Set(ref _selectedIndex, value);
-        //}
-        //#endregion
-
         #region SelectedItem
         private Client _selectedItem;
         public Client SelectedItem
@@ -57,13 +34,10 @@ namespace DataGrid_test.ViewModels
         }
         #endregion
 
-
         #endregion
 
 
         #region Commands
-
-        
 
         #region SaveChangesCommand. Сохранение изменений клиента в базе. Происходит во время изменений в DataGrid
 
@@ -78,8 +52,6 @@ namespace DataGrid_test.ViewModels
         private bool CanSaveChangesCommandExecute(object p) => true; //если команда должна быть доступна всегда, то просто возвращаем true
 
         #endregion
-
-       
 
         #endregion
 
@@ -96,12 +68,6 @@ namespace DataGrid_test.ViewModels
 
             #endregion
         }
-
-        #region Methods
-
-        //private 
-
-        #endregion
 
     }
 }
