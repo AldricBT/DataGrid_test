@@ -18,14 +18,14 @@
 
     <DockPanel>        
         
-        <DataGrid ItemsSource="{Binding Path=Clients}" 
-              AutoGenerateColumns="False" CanUserAddRows="True" ColumnWidth="Auto" SelectionMode="Single"
+        <DataGrid ItemsSource="{Binding Path=Clients}" Width="300" HorizontalAlignment="Left" Margin="20"
+              AutoGenerateColumns="False" CanUserAddRows="True" SelectionMode="Single"
                    SelectedItem="{Binding Path=SelectedItem}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" IsReadOnly="True" Width="Auto"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" 
-                                    IsReadOnly="False"/>
-                <DataGridTextColumn Header="Lastname" Binding="{Binding Path=Lastname}" IsReadOnly="True"/>
+                                    IsReadOnly="False" Width="Auto"/>
+                <DataGridTextColumn Header="Lastname" Binding="{Binding Path=Lastname}" IsReadOnly="True" Width="*"/>
             </DataGrid.Columns>
 
             <i:Interaction.Triggers>
