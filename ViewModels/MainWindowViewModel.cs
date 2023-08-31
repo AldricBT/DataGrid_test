@@ -13,8 +13,17 @@ using System.Windows.Input;
 namespace DataGrid_test.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
-    {   
+    {
         #region Fields/Properties
+
+        #region IsFieldReadOnly
+        private bool _isFieldReadOnly = true;
+        public bool IsFieldReadOnly
+        {
+            get => _isFieldReadOnly;
+            set => Set(ref _isFieldReadOnly, value);
+        }
+        #endregion
 
         #region PublicData
         private ObservableCollection<Client> _clients;

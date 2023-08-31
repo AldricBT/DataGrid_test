@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataGrid_test"
-        xmlns:vm="clr-namespace:DataGrid_test.ViewModels"                 
+        xmlns:vm="clr-namespace:DataGrid_test.ViewModels"   
+        xmlns:converters="clr-namespace:DataGrid_test.Infrastructure.Converters" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Работа с клиентами" 
@@ -12,6 +13,9 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <converters:BooleanConverter x:Key="BooleanConverter"/>
+    </Window.Resources>
 
   
 
@@ -23,7 +27,7 @@
                    SelectedItem="{Binding Path=SelectedItem}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" 
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"                                     
                                     IsReadOnly="False" Width="Auto"/>
                 <DataGridTextColumn Header="Lastname" Binding="{Binding Path=Lastname}" IsReadOnly="True" Width="*"/>
             </DataGrid.Columns>
